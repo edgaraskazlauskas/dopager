@@ -12,6 +12,7 @@
     "redux-action": "^1.2.2",
     "redux-devtools": "^3.4.1",
     "redux-devtools-extension": "^2.13.2",
+    "redux-persist": "^5.9.1",
     "redux-thunk": "^2.2.0",
     "uuid": "^3.2.1"
   },
