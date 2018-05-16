@@ -15,16 +15,20 @@ export const addTodo = (description) => (dispatch, getState) => {
     dispatch(addTodoAction({
         id,
         description,
-        completed: false
+        completed: false,
+        createdAt: Date.now(),
+        completedAt: null
     }))
 };
 
 export const toggleTogo = (id) => (dispatch, getState) => {
     const toggledTogo = getState().todos.find((todo) => todo.id === id);
+    const completed = !toggledTogo.completed;
 
     dispatch(toggleTodoAction({
         id,
-        completed: !toggledTogo.completed
+        completedAt: completed ? Date.now() : null,
+        completed
     }))
 };
 
