@@ -2,6 +2,8 @@ import React from 'react';
 import TodoList from './todo-list';
 import TodoInput from './todo-input';
 
+const INITIAL_ID = 1;
+
 class TodoListContainer extends React.Component {
     static defaultProps = {
         initialTodos: []
@@ -17,16 +19,20 @@ class TodoListContainer extends React.Component {
     }
 
     onClickedAdd(todo) {
-        this.setState((prevState) => ({
-            ...prevState,
-            todos: [
-                ...prevState.todos,
-                {
-                    id: prevState.todos[prevState.todos.length - 1].id + 1,
-                    description: todo
-                }
-            ]
-        }))
+        this.setState((prevState) => {
+            const lastTodoItem = prevState.todos[prevState.todos.length - 1];
+
+            return {
+                ...prevState,
+                todos: [
+                    ...prevState.todos,
+                    {
+                        id: !!lastTodoItem ? lastTodoItem.id + 1 : INITIAL_ID,
+                        description: todo
+                    }
+                ]
+            };
+        });
     }
 
     render() {
