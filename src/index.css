@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+/* Alignment */
+.df {
+  display: flex;
+}
+
+.fxdr {
+  flex-direction: row;
+}
+
+.fxdc {
+  flex-direction: column;
+}
+
+.aic {
+  align-items: center;
+}
+
+.jcc {
+  justify-content: center;
+}
+
+
+/* Paddings */
+.phm {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.pvm {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.pvs {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+/* Margins */
+.mhm {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.mvm {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.mvs {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+/* Fonts */
+.lh16 {
+  line-height: 16px;
+}
+
+.fz16 {
+  font-size: 16px;
+}
+
+/* Borders */
+.bdw0 {
+  border-width: 0;
+}
+
+.bdbws {
+  border-bottom-width: 1px;
+}
+
+.bdc-gray-light {
+  border-color: lightgray;
+}
+
+.bdss {
+  border-style: solid;
+}
+
