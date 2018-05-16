@@ -1,9 +1,9 @@
 import React from 'react';
-import TodoList from './../todo-list';
+import TodoManager from './../todo-manager';
 
 const Content = () => (
     <div>
-        <TodoList />
+        <TodoManager />
     </div>
 )
 
