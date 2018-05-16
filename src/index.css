@@ -25,6 +25,10 @@ body {
   justify-content: center;
 }
 
+.jcsb {
+  justify-content: space-between;
+}
+
 
 /* Paddings */
 .phm {
@@ -67,6 +71,10 @@ body {
   font-size: 16px;
 }
 
+.tdlt {
+  text-decoration: line-through;
+}
+
 /* Borders */
 .bdw0 {
   border-width: 0;
@@ -84,3 +92,22 @@ body {
   border-style: solid;
 }
 
+.bg-primary {
+  background-color: #2196F3;
+}
+
+.c-white {
+  color: white;
+}
+
+.w100p {
+  width: 100%;
+}
+
+.maw600 {
+  max-width: 600px;
+}
+
+.tac {
+  text-align: center;
+}

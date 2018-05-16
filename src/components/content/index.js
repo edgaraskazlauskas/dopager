@@ -2,7 +2,7 @@ import React from 'react';
 import TodoManager from './../todo-manager';
 
 const Content = () => (
-    <div>
+    <div className="w100p maw600">
         <TodoManager />
     </div>
 )

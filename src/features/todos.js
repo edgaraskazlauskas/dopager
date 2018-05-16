@@ -3,11 +3,17 @@ import uuid from 'uuid/v1';
 
 const ADD_TODO = 'todos/ADD_TODO';
 const TOGGLE_TODO = 'todos/TOGGLE_TODO';
+const DELETE_TODO = 'todos/DELETE_TODO';
 
 export const addTodoAction = createAction(ADD_TODO);
 export const toggleTodoAction = createAction(TOGGLE_TODO);
+export const deleteTodoAction = createAction(DELETE_TODO);
 
 export const getTodos = (state) => state.todos;
+
+export const deleteTodo = (id) => (dispatch) => {
+    dispatch(deleteTodoAction({ id }));
+}
 
 export const addTodo = (description) => (dispatch, getState) => {
     const id = uuid();
@@ -18,7 +24,7 @@ export const addTodo = (description) => (dispatch, getState) => {
         completed: false,
         createdAt: Date.now(),
         completedAt: null
-    }))
+    }));
 };
 
 export const toggleTogo = (id) => (dispatch, getState) => {
@@ -29,7 +35,7 @@ export const toggleTogo = (id) => (dispatch, getState) => {
         id,
         completedAt: completed ? Date.now() : null,
         completed
-    }))
+    }));
 };
 
 const todosReducer = (state = [], action) => {
@@ -47,6 +53,8 @@ const todosReducer = (state = [], action) => {
                     ? { ...todo, completed }
                     : todo
             );
+        case DELETE_TODO:
+            return state.filter((todo) => todo.id !== action.payload.id);
         default:
             return state
     }

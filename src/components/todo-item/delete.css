@@ -1,0 +1,19 @@
+.todo-delete:hover {
+    opacity: 1;
+}
+
+.todo-delete {
+    height: 24px;
+    width: 24px;
+    margin-bottom: 8px;
+    background-color: red;
+    color: white;
+    opacity: 0.5;
+    line-height: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 8px;
+    cursor: pointer;
+};
