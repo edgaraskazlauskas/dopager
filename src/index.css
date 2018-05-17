@@ -41,6 +41,9 @@ body {
   justify-content: space-between;
 }
 
+.asfe {
+  align-self: flex-end;
+}
 
 /* Paddings */
 .phm {
@@ -114,6 +117,10 @@ body {
 
 .c-white {
   color: white;
+}
+
+.h100p {
+  height: 100%;
 }
 
 .w100p {
