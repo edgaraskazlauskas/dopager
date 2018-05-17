@@ -153,6 +153,14 @@ body {
   background-color: red;
 }
 
+.bg-yellow-light {
+  background: lightyellow;
+}
+
+.c-black {
+  color: black;
+}
+
 .c-white {
   color: white;
 }

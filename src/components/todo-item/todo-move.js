@@ -1,10 +1,10 @@
 import React from 'react';
 import './action.css';
 
-const TodoDelete = ({ onClick }) => (
-    <div className="todo-action bg-green" onClick={onClick}>
+const TodoMove = ({ onClick }) => (
+    <div className="todo-action bg-green c-white" onClick={onClick}>
         >
     </div>
 );
 
-export default TodoDelete;
+export default TodoMove;

@@ -8,11 +8,13 @@ const ADD_TODO = 'todos/ADD_TODO';
 const TOGGLE_TODO = 'todos/TOGGLE_TODO';
 const DELETE_TODO = 'todos/DELETE_TODO';
 const MOVE_TODO = 'todos/MOVE_TODO';
+const TOGGLE_TODO_IN_PROGRESS = 'todos/TOGGLE_TODO_IN_PROGRESS';
 
 export const addTodoAction = createAction(ADD_TODO);
 export const toggleTodoAction = createAction(TOGGLE_TODO);
 export const deleteTodoAction = createAction(DELETE_TODO);
 export const moveTodoAction = createAction(MOVE_TODO);
+export const toggleTodoInProgressAction = createAction(TOGGLE_TODO_IN_PROGRESS);
 
 export const getTodos = (state) => state.todos;
 export const getTodoById = (state, id) => state.todos.find((todo) => todo.id === id);
@@ -21,6 +23,12 @@ export const getSelectedDayTodos = (state) => state.todos.filter(
         todo.date,
         getSelectedDate(state)
     )
+);
+
+export const toggleTodoInProgress = (id) => (dispatch) => (
+    dispatch(toggleTodoInProgressAction({
+        id
+    }))
 );
 
 export const moveTodo = (id) => (dispatch, getState) => {
@@ -77,6 +85,12 @@ const todosReducer = (state = [], action) => {
             return state.map(
                 (todo) => todo.id === action.payload.id
                     ? { ...todo, date: action.payload.date }
+                    : todo
+            );
+        case TOGGLE_TODO_IN_PROGRESS:
+            return state.map(
+                (todo) => todo.id === action.payload.id
+                    ? { ...todo, inProgress: !todo.inProgress }
                     : todo
             );
         default:
