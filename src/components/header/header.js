@@ -1,11 +1,11 @@
 import React from 'react';
 
 const Header = ({ title, selectedDate }) => (
-    <div className="df fxdc w100p tac">
-        <div className="bg-primary c-white">
-            <h1 className="mtm mhm">{title}</h1>
+    <div className="df fxdc w100p tac fxsh0">
+        <div className="bg-primary phm pvm c-white fz32">
+            <span>{title}</span>
         </div>
-        <h1>{selectedDate}</h1>
+        <span className="pvm phm fz32">{selectedDate}</span>
     </div>
 )
 

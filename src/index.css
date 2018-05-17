@@ -21,6 +21,10 @@ body {
   flex-grow: 1;
 }
 
+.fxsh0 {
+  flex-shrink: 0;
+}
+
 .fxdr {
   flex-direction: row;
 }
@@ -84,6 +88,14 @@ body {
 
 .fz16 {
   font-size: 16px;
+}
+
+.fz32 {
+  font-size: 32px;
+}
+
+.fwb {
+  font-weight: bold;
 }
 
 .tdlt {
