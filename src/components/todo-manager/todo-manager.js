@@ -3,7 +3,7 @@ import TodoList from './../todo-list';
 import TodoInput from './../todo-input';
 
 const TodoManager = () => (
-    <div>
+    <div className="fxg1">
         <div className="mvm df fxdc">
             <TodoInput />
         </div>

@@ -1,5 +1,7 @@
 import { createAction } from 'redux-action';
 import uuid from 'uuid/v1';
+import isSameDay from 'date-fns/is_same_day';
+import { getSelectedDate } from './pager';
 
 const ADD_TODO = 'todos/ADD_TODO';
 const TOGGLE_TODO = 'todos/TOGGLE_TODO';
@@ -10,6 +12,13 @@ export const toggleTodoAction = createAction(TOGGLE_TODO);
 export const deleteTodoAction = createAction(DELETE_TODO);
 
 export const getTodos = (state) => state.todos;
+
+export const getSelectedDayTodos = (state) => state.todos.filter(
+    (todo) => isSameDay(
+        todo.createdAt,
+        getSelectedDate(state)
+    )
+);
 
 export const deleteTodo = (id) => (dispatch) => {
     dispatch(deleteTodoAction({ id }));

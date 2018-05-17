@@ -5,8 +5,20 @@ body {
 }
 
 /* Alignment */
+.posr {
+  position: relative;
+}
+
+.posa {
+  position: absolute;
+}
+
 .df {
   display: flex;
+}
+
+.fxg1 {
+  flex-grow: 1;
 }
 
 .fxdr {
@@ -75,6 +87,10 @@ body {
   text-decoration: line-through;
 }
 
+.c-gray {
+  color: darkslategray;
+}
+
 /* Borders */
 .bdw0 {
   border-width: 0;
@@ -110,4 +126,8 @@ body {
 
 .tac {
   text-align: center;
+}
+
+.curp {
+  cursor: pointer;
 }

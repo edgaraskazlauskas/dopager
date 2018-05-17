@@ -1,9 +1,10 @@
-import React from 'react';
+import { connect } from 'react-redux';
+import Header from './header';
+import { getSelectedDate } from './../../features/pager';
 
-const Header = () => (
-    <div className="mtm mhm df w100p jcc bg-primary c-white">
-        <h1>DoPager</h1>
-    </div>
-)
-
-export default Header;
+export default connect(
+    (state) => ({
+        title: 'DoPager',
+        selectedDate: getSelectedDate(state)
+    })
+)(Header);
