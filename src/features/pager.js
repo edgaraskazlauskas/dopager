@@ -22,7 +22,7 @@ export const goToNext = () => (dispatch, getState) => {
     }));
 }
 
-const pagerReducer = (state = { activeDate: null }, action) => {
+const pagerReducer = (state = { activeDate: Date.now() }, action) => {
     switch (action.type) {
         case SET_DATE:
             return {
