@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getSelectedDayTodos, toggleTogo, deleteTodo } from '../../features/todos';
+import { getSelectedDayTodos, toggleTogo, deleteTodo, moveTodo } from '../../features/todos';
 import TodoList from './todo-list';
 
 export default connect(
@@ -8,6 +8,7 @@ export default connect(
     }),
     {
         onClickedToggle: toggleTogo,
-        onClickedDelete: deleteTodo
+        onClickedDelete: deleteTodo,
+        onClickedMove: moveTodo
     }
 )(TodoList);

@@ -145,6 +145,14 @@ body {
   background: white;
 }
 
+.bg-green {
+  background-color: green;
+}
+
+.bg-red {
+  background-color: red;
+}
+
 .c-white {
   color: white;
 }

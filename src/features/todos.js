@@ -2,17 +2,20 @@ import { createAction } from 'redux-action';
 import uuid from 'uuid/v1';
 import isSameDay from 'date-fns/is_same_day';
 import { getSelectedDate } from './pager';
+import addDays from 'date-fns/add_days';
 
 const ADD_TODO = 'todos/ADD_TODO';
 const TOGGLE_TODO = 'todos/TOGGLE_TODO';
 const DELETE_TODO = 'todos/DELETE_TODO';
+const MOVE_TODO = 'todos/MOVE_TODO';
 
 export const addTodoAction = createAction(ADD_TODO);
 export const toggleTodoAction = createAction(TOGGLE_TODO);
 export const deleteTodoAction = createAction(DELETE_TODO);
+export const moveTodoAction = createAction(MOVE_TODO);
 
 export const getTodos = (state) => state.todos;
-
+export const getTodoById = (state, id) => state.todos.find((todo) => todo.id === id);
 export const getSelectedDayTodos = (state) => state.todos.filter(
     (todo) => isSameDay(
         todo.date,
@@ -20,9 +23,16 @@ export const getSelectedDayTodos = (state) => state.todos.filter(
     )
 );
 
+export const moveTodo = (id) => (dispatch, getState) => {
+    const todo = getTodoById(getState(), id);
+    const updatedDate = addDays(todo.date, 1);
+
+    dispatch(moveTodoAction({ id, date: updatedDate }));
+};
+
 export const deleteTodo = (id) => (dispatch) => {
     dispatch(deleteTodoAction({ id }));
-}
+};
 
 export const addTodo = (description) => (dispatch, getState) => {
     const id = uuid();
@@ -56,18 +66,22 @@ const todosReducer = (state = [], action) => {
                 action.payload
             ];
         case TOGGLE_TODO:
-            const { id, completed } = action.payload;
-
             return state.map(
-                (todo) => todo.id === id
-                    ? { ...todo, completed }
+                (todo) => todo.id === action.payload.id
+                    ? { ...todo, completed: action.payload.completed }
                     : todo
             );
         case DELETE_TODO:
             return state.filter((todo) => todo.id !== action.payload.id);
+        case MOVE_TODO:
+            return state.map(
+                (todo) => todo.id === action.payload.id
+                    ? { ...todo, date: action.payload.date }
+                    : todo
+            );
         default:
             return state
     }
-  }
+};
   
-  export default todosReducer;
+export default todosReducer;
