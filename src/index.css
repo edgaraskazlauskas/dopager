@@ -172,3 +172,29 @@ body {
 .curp {
   cursor: pointer;
 }
+
+
+/* Mobile styles */
+@media (max-width: 759px) {
+  .mv0-xs {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .posf-xs {
+    position: fixed;
+  }
+
+  .bdss-xs {
+    border-style: solid;
+  }
+
+  .bdtws-xs {
+    border-top-width: 1px;
+  }
+
+  .pvs-xs {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+}
