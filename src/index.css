@@ -4,9 +4,19 @@ body {
   font-family: sans-serif;
 }
 
+/* Positions */
+
+.b0 {
+  bottom: 0;
+}
+
 /* Alignment */
 .posr {
   position: relative;
+}
+
+.posf {
+  position: fixed;
 }
 
 .posa {
@@ -115,6 +125,10 @@ body {
   border-bottom-width: 1px;
 }
 
+.bdtws {
+  border-top-width: 1px;
+}
+
 .bdc-gray-light {
   border-color: lightgray;
 }
@@ -125,6 +139,10 @@ body {
 
 .bg-primary {
   background-color: #2196F3;
+}
+
+.bg-white {
+  background: white;
 }
 
 .c-white {
@@ -141,6 +159,10 @@ body {
 
 .maw600 {
   max-width: 600px;
+}
+
+.mih48 {
+  min-height: 48px;
 }
 
 .tac {

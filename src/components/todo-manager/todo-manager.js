@@ -4,7 +4,7 @@ import TodoInput from './../todo-input';
 
 const TodoManager = () => (
     <div className="fxg1">
-        <div className="mvm df fxdc">
+        <div className="df fxdc">
             <TodoInput />
         </div>
 
