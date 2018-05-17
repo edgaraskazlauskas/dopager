@@ -15,7 +15,7 @@ export const getTodos = (state) => state.todos;
 
 export const getSelectedDayTodos = (state) => state.todos.filter(
     (todo) => isSameDay(
-        todo.createdAt,
+        todo.date,
         getSelectedDate(state)
     )
 );
@@ -32,6 +32,7 @@ export const addTodo = (description) => (dispatch, getState) => {
         description,
         completed: false,
         createdAt: Date.now(),
+        date: getState().pager.activeDate,
         completedAt: null
     }));
 };

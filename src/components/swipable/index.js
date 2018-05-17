@@ -5,7 +5,7 @@ import { goToPrevious, goToNext } from '../../features/pager';
 export default connect(
     null,
     {
-        onSwipeLeft: goToPrevious,
-        onSwipeRight: goToNext
+        onSwipeLeft: goToNext,
+        onSwipeRight: goToPrevious
     }
 )(Swipable);
