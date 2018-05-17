@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
-import PagerNavigator from './pager-navigator';
+import TextPager from './text-pager';
 import { goToNext, goToPrevious } from '../../features/pager';
 
 export default connect(
     null,
     {
-        onArrowLeftClicked: goToNext,
-        onArrowRightClicked: goToPrevious
+        onClickedNext: goToNext,
+        onClickedPrevious: goToPrevious
     }
-)(PagerNavigator);
+)(TextPager);
