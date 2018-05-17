@@ -5,7 +5,7 @@ import { goToNext, goToPrevious } from '../../features/pager';
 export default connect(
     null,
     {
-        onArrowLeftClicked: goToNext,
-        onArrowRightClicked: goToPrevious
+        onArrowLeftClicked: goToPrevious,
+        onArrowRightClicked: goToNext
     }
 )(PagerNavigator);
