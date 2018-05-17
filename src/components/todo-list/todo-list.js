@@ -1,7 +1,7 @@
 import React from 'react';
 import TodoItem from './../todo-item';
 
-const TodoList = ({ todos = [], onClickedSetInProgress, onClickedDelete, onClickedMove }) => (
+const TodoList = ({ todos = [], onClickedSetInProgress, onClickedToggle, onClickedDelete, onClickedMove }) => (
     <div>
         {todos.map((todo) => (
             <TodoItem
@@ -10,6 +10,7 @@ const TodoList = ({ todos = [], onClickedSetInProgress, onClickedDelete, onClick
                 completed={todo.completed}
                 isInProgress={todo.inProgress}
                 onClickedSetInProgress={() => onClickedSetInProgress(todo.id)}
+                onClickedToggle={() => onClickedToggle(todo.id)}
                 onClickedDelete={() => onClickedDelete(todo.id)}
                 onClickedMove={() => onClickedMove(todo.id)}
             />
