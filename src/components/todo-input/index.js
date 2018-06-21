@@ -6,7 +6,7 @@ export default connect(
     () => ({
         placeholder: 'Enter a Todo Item...'
     }),
-    {
-        onFinished: addTodo
-    }
+    (dispatch, { date }) => ({
+        onFinished: (description) => dispatch(addTodo(description, date))
+    })
 )(TodoInput);

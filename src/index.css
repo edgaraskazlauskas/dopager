@@ -125,6 +125,10 @@ body {
   border-bottom-width: 1px;
 }
 
+.bdrws {
+  border-right-width: 1px;
+}
+
 .bdtws {
   border-top-width: 1px;
 }

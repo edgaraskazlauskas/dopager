@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import Header from './header';
-import { getSelectedDate } from './../../features/pager';
+import { getSelectedDate, getIsDailyView, getFormattedDate } from './../../features/pager';
+import showable from './../../hofs/showable';
 
 export default connect(
     (state) => ({
-        title: 'DoPager',
-        selectedDate: getSelectedDate(state)
+        selectedDate: getFormattedDate(getSelectedDate(state)),
+        isVisible: getIsDailyView(state)
     })
-)(Header);
+)(showable(Header));

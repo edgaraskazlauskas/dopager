@@ -1,14 +1,14 @@
 import React from 'react';
-import TodoList from './../todo-list';
-import TodoInput from './../todo-input';
+import Header from './../header';
+import MultipleDayManager from './multiple-day-manager-container';
 
-const TodoManager = () => (
+const TodoManager = ({ type }) => (
     <div className="fxg1">
-        <div className="df fxdc">
-            <TodoInput />
-        </div>
+        <Header />
 
-        <TodoList />
+        <div className="w100p fxg1 df fxdc">
+            <MultipleDayManager />
+        </div>
     </div>
 );
 

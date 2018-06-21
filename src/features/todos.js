@@ -24,6 +24,12 @@ export const getSelectedDayTodos = (state) => state.todos.filter(
         getSelectedDate(state)
     )
 );
+export const getDateTodos = (state, date) => state.todos.filter(
+    (todo) => isSameDay(
+        todo.date,
+        date
+    )
+);
 
 export const toggleTodoInProgress = (id) => (dispatch) => (
     dispatch(toggleTodoInProgressAction({
@@ -42,7 +48,7 @@ export const deleteTodo = (id) => (dispatch) => {
     dispatch(deleteTodoAction({ id }));
 };
 
-export const addTodo = (description) => (dispatch, getState) => {
+export const addTodo = (description, date) => (dispatch, getState) => {
     const id = uuid();
 
     dispatch(addTodoAction({
@@ -50,7 +56,7 @@ export const addTodo = (description) => (dispatch, getState) => {
         description,
         completed: false,
         createdAt: Date.now(),
-        date: getState().pager.activeDate,
+        date: date || getState().pager.activeDate,
         completedAt: null
     }));
 };

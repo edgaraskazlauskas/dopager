@@ -3,7 +3,7 @@ import TodoManager from './../todo-manager';
 import PagerNavigator from './../pager';
 
 const Content = () => (
-    <div className="w100p maw600 fxg1 df fxdc">
+    <div className="df fxg1 fxdc phm">
         <TodoManager />
         <PagerNavigator />
     </div>

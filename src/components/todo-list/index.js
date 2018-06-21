@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
-import { getSelectedDayTodos, toggleTogo, deleteTodo, moveTodo, toggleTodoInProgress } from '../../features/todos';
+import { getSelectedDayTodos, toggleTogo, deleteTodo, moveTodo, toggleTodoInProgress, getDateTodos } from '../../features/todos';
 import TodoList from './todo-list';
 
 export default connect(
-    (state) => ({
-        todos: getSelectedDayTodos(state)
+    (state, { date }) => ({
+        todos: !!date ? getDateTodos(state, date) : getSelectedDayTodos(state)
     }),
     {
         onClickedToggle: toggleTogo,
