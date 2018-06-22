@@ -5,7 +5,7 @@ const KEY_ARROW_LEFT = 37;
 const KEY_ARROW_RIGHT = 39;
 
 class PagerNavigator extends React.Component {
-    keyListener;
+    keyListener = null;
 
     componentDidMount() {
         this.keyListener = window.addEventListener('keyup', (event) => {
@@ -20,7 +20,9 @@ class PagerNavigator extends React.Component {
     }
 
     componentWillUnmount() {
-        this.keyListener();
+        if (this.keyListener) {
+            this.keyListener();
+        }
     }
 
     render() {
