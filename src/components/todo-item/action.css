@@ -5,6 +5,7 @@
 .todo-action {
     height: 24px;
     width: 24px;
+    border-radius: 50%;
     opacity: 0.5;
     line-height: 24px;
     display: flex;
