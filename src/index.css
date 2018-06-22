@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 /* Positions */
@@ -171,6 +173,10 @@ body {
 
 .h100p {
   height: 100%;
+}
+
+.mih100p {
+  min-height: 100%;
 }
 
 .w100p {
