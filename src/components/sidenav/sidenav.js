@@ -41,7 +41,7 @@ class Sidenav extends React.PureComponent {
 				</div>
 
 				<div className={itemClassName} onClick={this.onToggledView}>
-					Toggle View
+					{this.state.isToggledOn ? 'Toggle View' : 'TV'}
 				</div>
 			</div>
 		)
