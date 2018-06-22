@@ -6,7 +6,7 @@ const App = () => (
     <div className="mih100p df fxdr">
         <Sidenav />
         <div className="fxg1">
-            <div className="bg-primary phm pvm c-white fz32 tac">
+            <div className="bg-primary phm pvm c-white fzl tac">
                 <span>A dull pencil is better than the sharpest mind</span>
             </div>
             <Content />

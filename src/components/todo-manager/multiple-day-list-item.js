@@ -4,7 +4,7 @@ import TodoInput from './../todo-input';
 
 const MultipleDayListItem = ({ date, isDateVisible }) => (
     <div className="df fxdc">
-        {isDateVisible && <div className="pvm fz32 tac">{date}</div>}
+        {isDateVisible && <div className="pvm fzl tac bg-primary-light">{date}</div>}
         <TodoList date={date} />
         <TodoInput date={date} />
     </div>
