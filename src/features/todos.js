@@ -1,7 +1,7 @@
 import { createAction } from 'redux-action';
 import uuid from 'uuid/v1';
 import isSameDay from 'date-fns/is_same_day';
-import { getSelectedDate } from './pager';
+import { getSelectedDate, getIsDailyView } from './pager';
 import addDays from 'date-fns/add_days';
 
 const ADD_TODO = 'todos/ADD_TODO';
@@ -18,18 +18,16 @@ export const toggleTodoInProgressAction = createAction(TOGGLE_TODO_IN_PROGRESS);
 
 export const getTodos = (state) => state.todos;
 export const getTodoById = (state, id) => state.todos.find((todo) => todo.id === id);
-export const getSelectedDayTodos = (state) => state.todos.filter(
-    (todo) => isSameDay(
-        todo.date,
-        getSelectedDate(state)
-    )
-);
-export const getDateTodos = (state, date) => state.todos.filter(
-    (todo) => isSameDay(
-        todo.date,
-        date
-    )
-);
+export const getDateTodos = (state, date) => {
+    const isDailyView = getIsDailyView(state);
+
+    return state.todos.filter(
+        (todo) => isSameDay(
+            todo.date,
+            isDailyView ? getSelectedDate(state) : date
+        )
+    );
+};
 
 export const toggleTodoInProgress = (id) => (dispatch) => (
     dispatch(toggleTodoInProgressAction({
