@@ -3,10 +3,7 @@ import ViewTypeToggle from './view-type-toggle';
 import { togglePagerType } from '../../features/pager';
 
 export default connect(
-    () => ({
-        placeholder: 'Enter a Todo Item...'
-    }),
-    (dispatch, { date }) => ({
+    (dispatch) => ({
         onChange: () => dispatch(togglePagerType())
     })
 )(ViewTypeToggle);

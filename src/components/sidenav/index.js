@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import Sidenav from './sidenav';
-import { togglePagerType } from '../../features/pager';
+import { openCategoryList } from '../../features/categories/actions';
 
 export default connect(
     null,
     {
-        onToggledView: togglePagerType
+        openCategoryList: openCategoryList
     }
 )(Sidenav);

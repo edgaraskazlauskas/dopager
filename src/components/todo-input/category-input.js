@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import TodoInput from './todo-input';
-import { addTodo } from '../../features/todos/actions';
+import { createCategory } from '../../features/categories/actions';
 
 export default connect(
     () => ({
-        placeholder: 'Enter a Todo Item...'
+        placeholder: 'Enter Category Name...'
     }),
     (dispatch, { date }) => ({
-        onFinished: (description) => dispatch(addTodo(description, date))
+        onFinished: (name) => dispatch(createCategory(name))
     })
 )(TodoInput);

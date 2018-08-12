@@ -30,8 +30,16 @@ body {
   display: flex;
 }
 
+.fxb20p {
+  flex-basis: 20%;
+}
+
 .fxg1 {
   flex-grow: 1;
+}
+
+.fxg0 {
+  flex-grow: 0;
 }
 
 .fxsh0 {
@@ -40,6 +48,10 @@ body {
 
 .fxdr {
   flex-direction: row;
+}
+
+.fxww {
+  flex-wrap: wrap;
 }
 
 .fxdc {
@@ -68,6 +80,11 @@ body {
   padding-right: 16px;
 }
 
+.phs {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
 .pvm {
   padding-top: 16px;
   padding-bottom: 16px;
@@ -89,9 +106,26 @@ body {
   margin-bottom: 16px;
 }
 
+.mhs {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
 .mvs {
   margin-top: 8px;
   margin-bottom: 8px;
+}
+
+.mbm {
+  margin-bottom: 16px;
+}
+
+.mrm {
+  margin-right: 16px;
+}
+
+.mrs {
+  margin-right: 8px;
 }
 
 /* Fonts */
@@ -142,6 +176,10 @@ body {
 
 .bdss {
   border-style: solid;
+}
+
+.bdrs5 {
+  border-radius: 5px;
 }
 
 .bg-primary {

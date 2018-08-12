@@ -8,11 +8,11 @@ class Sidenav extends React.PureComponent {
 		super(props);
 		
 		this.state = {
-			isToggledOn: false
+			isToggledOn: true
 		};
 
 		this.onToggled = this.onToggled.bind(this);
-		this.onToggledView = this.onToggledView.bind(this);
+		this.onClickedOpenCategories = this.onClickedOpenCategories.bind(this);
 	}
 
 	onToggled() {
@@ -21,10 +21,9 @@ class Sidenav extends React.PureComponent {
 		}))
 	}
 
-	onToggledView(event) {
-		event.stopPropagation();
-
-		this.props.onToggledView();
+	onClickedOpenCategories() {
+		this.onToggled();
+		this.props.openCategoryList();
 	}
 
     render() {
@@ -34,14 +33,14 @@ class Sidenav extends React.PureComponent {
 			<div
 				style={{ flexBasis: this.state.isToggledOn ? WIDTH_TOGGLED_ON : WIDTH_TOGGLED_OFF }}
 				onClick={this.onToggled}
-				className="bdss bdw0 bdrws bdc-gray-light"
+				className="bdss bdw0 bdrws bdc-gray-light fxg0 fxsh0"
 			>
-				<div className={itemClassName}>
+				{/* <div className={itemClassName}>
 					{this.state.isToggledOn ? 'Anonymous' : 'A'}
-				</div>
+				</div> */}
 
-				<div className={itemClassName} onClick={this.onToggledView}>
-					{this.state.isToggledOn ? 'Toggle View' : 'TV'}
+				<div className={itemClassName} onClick={this.onClickedOpenCategories}>
+					{this.state.isToggledOn ? 'Categories' : 'C'}
 				</div>
 			</div>
 		)

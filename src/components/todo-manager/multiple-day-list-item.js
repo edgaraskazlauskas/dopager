@@ -1,11 +1,19 @@
 import React from 'react';
 import TodoList from './../todo-list';
 import TodoInput from './../todo-input';
+import DayHeaderContainer from '../todo-list/day-header-container';
+import { Type } from '../todo-list/day-header';
 
-const MultipleDayListItem = ({ date, isDateVisible }) => (
+const MultipleDayListItem = ({ date, isDateVisible, daysFromNow, categoryId }) => (
     <div className="df fxdc">
-        {isDateVisible && <div className="pvm fzl tac bg-primary-light">{date}</div>}
-        <TodoList date={date} />
+        {isDateVisible && (
+            <DayHeaderContainer
+                type={Type.Large}
+                daysFromNow={daysFromNow}
+                label={'View Single'}
+            />
+        )}
+        <TodoList date={date} categoryId={categoryId} />
         <TodoInput date={date} />
     </div>
 );
