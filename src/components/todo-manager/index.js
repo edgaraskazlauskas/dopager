@@ -5,6 +5,7 @@ import { getIsDailyView } from './../../features/pager';
 export default connect(
     (state, { categoryId }) => ({
         type: state.pager.pagerType,
-        isDateVisible: !getIsDailyView(state)
+        isDateVisible: !getIsDailyView(state),
+        categoryId
     })
 )(TodoManager);

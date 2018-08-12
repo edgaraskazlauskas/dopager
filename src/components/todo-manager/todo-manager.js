@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './../header';
 import MultipleDayManager from './multiple-day-manager-container';
 
-const TodoManager = ({ type, categoryId }) => (
+const TodoManager = ({ categoryId }) => (
     <div className="fxg1">
         <Header />
 

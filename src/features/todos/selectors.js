@@ -3,7 +3,7 @@ import { getSelectedDate, getIsDailyView } from './../pager';
 
 export const getTodos = (state) => state.todos;
 export const getTodoById = (state, id) => state.todos.find((todo) => todo.id === id);
-export const getDateTodos = (state, date, categoryId) => {
+export const getDateTodos = (state, date, categoryId, limit) => {
     const isDailyView = getIsDailyView(state);
 
     return state.todos.filter(

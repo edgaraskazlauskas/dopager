@@ -13,7 +13,7 @@ const MultipleDayListItem = ({ date, isDateVisible, daysFromNow, categoryId }) =
                 label={'View Single'}
             />
         )}
-        <TodoList date={date} categoryId={categoryId} />
+        <TodoList date={date} categoryId={categoryId} limit={5} />
         <TodoInput date={date} />
     </div>
 );

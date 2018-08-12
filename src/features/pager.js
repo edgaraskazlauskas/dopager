@@ -2,7 +2,11 @@ import { createAction } from 'redux-actions';
 import addDays from 'date-fns/add_days';
 import startOfDay from 'date-fns/start_of_day';
 import format from 'date-fns/format'
-import TodoManagerType from './../components/todo-manager/type';
+
+const TodoManagerType = {
+    WEEKLY: 0,
+    DAILY: 1
+};
 
 export const getSelectedDate = (state) => state.pager.activeDate;
 export const getSelectedDaysFromNow = (state) => state.pager.daysFromNow;

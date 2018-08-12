@@ -6,7 +6,7 @@ import CategoryCard from './card';
 export default connect(
     (state, { categoryId }) => ({
         title: getCategoryName(state, categoryId),
-        items: getCategoryItems(state, categoryId)
+        items: getCategoryItems(state, categoryId, 5)
     }),
     (dispatch, { categoryId }) => ({
         onClick: () => dispatch(openCategory(categoryId))
