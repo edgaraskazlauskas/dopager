@@ -7,7 +7,7 @@ export const Type = {
 }
 
 const DayHeader = ({ date, type = Type.Regular, label, onClickedLabel }) => (
-    <div className={classnames('df aic jcc', {
+    <div className={classnames('df aic jcc phm', {
         'pvm fzl bg-primary-light': type === Type.Large
     })}>
         <span className="mrs">{date}</span>
