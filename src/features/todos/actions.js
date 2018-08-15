@@ -1,53 +1,83 @@
 import { createAction } from 'redux-actions';
-import { ADD_TODO, TOGGLE_TODO, DELETE_TODO, MOVE_TODO, TOGGLE_TODO_IN_PROGRESS } from './constants';
+import { ADD_TODO, UPDATE_TODO, DELETE_TODO, INITIALISE_TODOS, FETCH_TODOS } from './constants';
 import uuid from 'uuid/v1';
 import addDays from 'date-fns/add_days';
-import { getTodoById } from './selectors';
+import { getTodoById, getTodos } from './selectors';
 
 // action creators
-const addTodoAction = createAction(ADD_TODO);
-const toggleTodoAction = createAction(TOGGLE_TODO);
+export const fetchTodos = createAction(FETCH_TODOS);
+const initialiseTodosAction = createAction(INITIALISE_TODOS);
 const deleteTodoAction = createAction(DELETE_TODO);
-const moveTodoAction = createAction(MOVE_TODO);
-const toggleTodoInProgressAction = createAction(TOGGLE_TODO_IN_PROGRESS);
+const addTodoAction = createAction(ADD_TODO);
+const updateTodoAction = createAction(UPDATE_TODO);
 
 // thunks
-export const toggleTodoInProgress = (id) => (dispatch) => (
-    dispatch(toggleTodoInProgressAction({
-        id
-    }))
-);
-
-export const moveTodo = (id) => (dispatch, getState) => {
-    const todo = getTodoById(getState(), id);
-    const updatedDate = addDays(todo.date, 1);
-
-    dispatch(moveTodoAction({ id, date: updatedDate }));
-};
-
 export const deleteTodo = (id) => (dispatch) => {
     dispatch(deleteTodoAction({ id }));
 };
 
-export const addTodo = (description, date) => (dispatch, getState) => {
-    const id = uuid();
+export const initialiseTodos = ({ ids = [], byId = {} }) => (dispatch, getState) => {
+    const state = getState();
+    const filterIds = ids.filter((id) => state.todos.ids.indexOf(id) === -1);
+    const filteredById = filterIds.reduce((previousById, currentId) => {
+        return {
+            ...previousById,
+            [currentId]: byId[currentId]
+        }
+    }, {})
 
-    dispatch(addTodoAction({
-        id,
-        description,
-        completed: false,
-        categoryId: getState().router.location.state.categoryId,
-        createdAt: Date.now(),
-        date: date || getState().pager.activeDate,
-        completedAt: null
+    dispatch(initialiseTodosAction({
+        ids: [
+            ...state.todos.ids,
+            ...filterIds
+        ],
+        byId: {
+            ...state.todos.byId,
+            ...filteredById
+        }
     }));
 };
 
+export const toggleTodoInProgress = (id) => (dispatch, getState) => {
+    const isTodoInProgress = getTodoById(getState(), id).inProgress;
+
+    dispatch(updateTodoAction({
+        id,
+        inProgress: isTodoInProgress
+    }));
+};
+
+export const moveTodo = (id) => (dispatch, getState) => {
+    const todo = getTodoById(getState(), id);
+
+    dispatch(updateTodoAction({
+        id,
+        date: addDays(todo.date, 1)
+    }));
+};
+
+export const addTodo = (description, date) => (dispatch, getState) => {
+    const id = uuid();
+    const state = getState();
+
+    const todoPayload = {
+        id,
+        description,
+        completed: false,
+        categoryId: state.router.location.state.categoryId,
+        createdAt: Date.now(),
+        date: date || state.pager.activeDate,
+        completedAt: null
+    };
+
+    dispatch(addTodoAction(todoPayload));
+};
+
 export const toggleTogo = (id) => (dispatch, getState) => {
-    const toggledTogo = getState().todos.find((todo) => todo.id === id);
+    const toggledTogo = getTodos(getState()).find((todo) => todo.id === id);
     const completed = !toggledTogo.completed;
 
-    dispatch(toggleTodoAction({
+    dispatch(updateTodoAction({
         id,
         completedAt: completed ? Date.now() : null,
         completed

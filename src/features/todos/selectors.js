@@ -1,12 +1,14 @@
 import isSameDay from 'date-fns/is_same_day';
 import { getSelectedDate, getIsDailyView } from './../pager';
 
-export const getTodos = (state) => state.todos;
-export const getTodoById = (state, id) => state.todos.find((todo) => todo.id === id);
-export const getDateTodos = (state, date, categoryId, limit) => {
+export const getTodos = (state) => (state.todos.ids || []).map((id) => state.todos.byId[id]);
+export const getTodoById = (state, id) => {
+    return state.todos.byId[id]
+};
+export const getDateTodos = (state, date, categoryId) => {
     const isDailyView = getIsDailyView(state);
 
-    return state.todos.filter(
+    return getTodos(state).filter(
         (todo) => {
             const isAcceptableDate = isSameDay(
                 todo.date,

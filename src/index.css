@@ -13,6 +13,14 @@ body {
   bottom: 0;
 }
 
+.r0 {
+  right: 0;
+}
+
+.l0 {
+  left: 0;
+}
+
 /* Alignment */
 .posr {
   position: relative;
@@ -212,6 +220,10 @@ body {
 
 .c-white {
   color: white;
+}
+
+.c-primary {
+  color: #2196F3
 }
 
 .h100p {
