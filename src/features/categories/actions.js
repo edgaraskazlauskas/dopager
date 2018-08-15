@@ -2,7 +2,6 @@ import { createAction } from 'redux-actions';
 import { ADD_CATEGORY, INITIALISE_CATEGORIES, FETCH_CATEGORIES } from './constants';
 import { getCategoryNames } from './selectors';
 import { push } from 'connected-react-router';
-import { isAuthenticated } from '../auth/selectors';
 
 export const fetchCategories = createAction(FETCH_CATEGORIES);
 const createCategoryAction = createAction(ADD_CATEGORY);
@@ -29,11 +28,6 @@ export const createCategory = (name) => (dispatch, getState) => {
     }
 
     dispatch(createCategoryAction({ name }));
-
-    if (!isAuthenticated(state)) {
-        return;
-    }
-
 };
 
 export const openCategoryList = () => (dispatch) => {
