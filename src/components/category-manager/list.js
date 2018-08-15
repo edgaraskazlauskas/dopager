@@ -11,6 +11,7 @@ const CategoryList = ({ categoryNames }) => (
             {categoryNames.map((name) => (
                 <CategoryCard key={name} categoryId={name} />
             ))}
+            <div>{process.env.REACT_APP_SECRET_CODE}</div>
         </div>
     </div>
 );

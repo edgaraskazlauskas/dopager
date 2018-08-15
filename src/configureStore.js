@@ -6,6 +6,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web and AsyncStorage for react-native
 import rootReducer, { initialiseApp } from './features';
+import todosApiMiddleware from './features/todos/middleware';
+import categoriesApiMiddleware from './features/categories/middleware';
 
 const persistedReducer = persistReducer({ key: 'root', storage }, rootReducer);
 const composeEnhancers = composeWithDevTools({
@@ -19,7 +21,9 @@ export const store = createStore(
     composeEnhancers(
         applyMiddleware(
             routerMiddleware(history), // for dispatching history actions
-            thunk
+            thunk,
+            todosApiMiddleware,
+            categoriesApiMiddleware
         )
     )
 );

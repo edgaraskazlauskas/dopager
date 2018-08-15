@@ -5,6 +5,7 @@ import Sidenav from './sidenav';
 import CategoryManager from './category-manager';
 import { Route, Switch } from 'react-router';
 import { withRouter } from 'react-router';
+import Login from './login';
 
 const App = ({ match }) => (
     <div className="mih100p df fxdr">
@@ -19,6 +20,7 @@ const App = ({ match }) => (
                 <Route path="/categories/:id" component={SingleCategoryContent} />
                 <Route render={() => (<div>Miss</div>)} />
             </Switch>
+            <Login />
         </div>
     </div>
 )
