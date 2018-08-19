@@ -24,8 +24,11 @@ export const getUpdatedDate = (date, daysToAdd = 0) => addDays(date, daysToAdd).
 export const getFormattedDate = (date) => format(date, 'dddd - MM/DD/YYYY')
 
 export const goToPrevious = () => (dispatch, getState) => {
+    const state = getState();
+
     dispatch(setDateAction({
-        activeDate: getUpdatedDate(getActiveDate(getState()), -1)
+        activeDate: getUpdatedDate(getActiveDate(state), -1),
+        daysFromNow: state.pager.daysFromNow - 1
     }));
 };
 
@@ -44,12 +47,18 @@ export const togglePagerType = () => (dispatch, getState) => {
 };
 
 export const goToNext = () => (dispatch, getState) => {
+    const state = getState();
+
     dispatch(setDateAction({
-        activeDate: getUpdatedDate(getActiveDate(getState()), 1)
+        activeDate: getUpdatedDate(getActiveDate(state), 1),
+        daysFromNow: state.pager.daysFromNow - 1
     }));
 };
 
-const pagerReducer = (state = { activeDate: Date.now(), pagerType: TodoManagerType.DAILY }, action) => {
+const pagerReducer = (
+    state = { activeDate: Date.now(), pagerType: TodoManagerType.DAILY, daysFromNow: 0 },
+    action
+) => {
     switch (action.type) {
         case SET_DATE:
             const { activeDate, daysFromNow } = action.payload;

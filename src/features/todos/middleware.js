@@ -31,9 +31,33 @@ const todosApiMiddleware = (store) => (next) => (action) => {
                         }
                     }), { ids: [], byId: {} });
 
+                // filter todos that have already been stored locally
+                const filteredFirebaseIds = ids.filter((id) => state.todos.ids.indexOf(id) === -1);
+                const filteredFirebaseById = filteredFirebaseIds.reduce((previousById, currentId) => ({
+                    ...previousById,
+                    [currentId]: byId[currentId]
+                }), {});
+
+                // get recently created todos
+                const newTodoIds = state.todos.ids.filter((id) => ids.indexOf(id) === -1);
+                const newTodosById = newTodoIds.reduce((previousById, currentId) => ({
+                    ...previousById,
+                    [currentId]: state.todos.byId[currentId]
+                }), {});
+
+                newTodoIds.forEach((item) => {
+                    todosRef
+                        .child(state.auth.user.uid)
+                        .child(item)
+                        .set(newTodosById[item]);
+                });
+
+                const allIds = [ ...state.todos.ids, ...filteredFirebaseIds ];
+                const allById = { ...state.todos.byId, ...filteredFirebaseById };
+
                 store.dispatch(initialiseTodos({
-                    ids,
-                    byId
+                    ids: allIds,
+                    byId: allById
                 }));
             });
 

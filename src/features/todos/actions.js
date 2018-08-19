@@ -2,7 +2,9 @@ import { createAction } from 'redux-actions';
 import { ADD_TODO, UPDATE_TODO, DELETE_TODO, INITIALISE_TODOS, FETCH_TODOS } from './constants';
 import uuid from 'uuid/v1';
 import addDays from 'date-fns/add_days';
+import getTime from 'date-fns/get_time';
 import { getTodoById, getTodos } from './selectors';
+import { getIsDailyView } from '../pager';
 
 // action creators
 export const fetchTodos = createAction(FETCH_TODOS);
@@ -24,7 +26,7 @@ export const initialiseTodos = ({ ids = [], byId = {} }) => (dispatch, getState)
             ...previousById,
             [currentId]: byId[currentId]
         }
-    }, {})
+    }, {});
 
     dispatch(initialiseTodosAction({
         ids: [
@@ -59,6 +61,7 @@ export const moveTodo = (id) => (dispatch, getState) => {
 export const addTodo = (description, date) => (dispatch, getState) => {
     const id = uuid();
     const state = getState();
+    const isExtendedView = !getIsDailyView(state);
 
     const todoPayload = {
         id,
@@ -66,7 +69,7 @@ export const addTodo = (description, date) => (dispatch, getState) => {
         completed: false,
         categoryId: state.router.location.state.categoryId,
         createdAt: Date.now(),
-        date: date || state.pager.activeDate,
+        date: getTime(isExtendedView ? date : state.pager.activeDate),
         completedAt: null
     };
 

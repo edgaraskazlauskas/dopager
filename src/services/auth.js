@@ -1,14 +1,16 @@
 import { authRef, provider } from "../config/firebase";
 
 export const signIn = () => {
+    const authenticate = authRef.signInWithPopup(provider);
+
     return new Promise((resolve, reject) => {
-        authRef.signInWithPopup(provider)
-            .then((data) => {
+        authenticate
+            .then((authData) => {
                 resolve({
-                    name: data.user.displayName,
-                    email: data.user.email,
-                    photo: data.user.photoURL,
-                    uid: data.user.uid
+                    name: authData.user.displayName,
+                    email: authData.user.email,
+                    photo: authData.user.photoURL,
+                    uid: authData.user.uid
                 });
             })
             .catch(() => {
