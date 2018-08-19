@@ -7,15 +7,9 @@ export const fetchCategories = createAction(FETCH_CATEGORIES);
 const createCategoryAction = createAction(ADD_CATEGORY);
 const initialiseCategoriesAction = createAction(INITIALISE_CATEGORIES);
 
-export const initialiseCategories = (ids) => (dispatch, getState) => {
-    const state = getState();
-    const filterIds = ids.filter((id) => state.categories.ids.indexOf(id) === -1);
-
+export const initialiseCategories = (ids) => (dispatch) => {
     dispatch(initialiseCategoriesAction({
-        ids: [
-            ...state.categories.ids,
-            ...filterIds
-        ],
+        ids
     }));
 };
 

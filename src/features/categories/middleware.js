@@ -27,7 +27,16 @@ const categoriesApiMiddleware = (store) => (next) => (action) => {
                         ],
                     }), { ids: [] });
         
-                store.dispatch(initialiseCategories(ids));
+                const localItemsToSave = state.categories.ids.filter((id) => ids.indexOf(id) === -1);
+
+                localItemsToSave.forEach((item) => {
+                    categoriesRef
+                        .child(state.auth.user.uid)
+                        .child(item)
+                        .set(item);
+                });
+
+                store.dispatch(initialiseCategories([ ...localItemsToSave, ...ids ]));
             });
 
             break;

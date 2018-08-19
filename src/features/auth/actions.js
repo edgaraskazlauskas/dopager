@@ -2,7 +2,7 @@ import { createAction } from 'redux-actions';
 import { signIn, signOut } from "../../services/auth";
 import { SET_USER_DATA, SET_PROMPT_OPEN } from "./constants";
 import { fetchTodos } from '../todos/actions';
-import { initialiseCategories, fetchCategories } from '../categories/actions';
+import { fetchCategories } from '../categories/actions';
 import { isAuthenticated, isAuthenticationPromptOpen } from './selectors';
 
 const setUserDataAction = createAction(SET_USER_DATA);

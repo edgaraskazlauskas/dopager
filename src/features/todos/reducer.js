@@ -1,8 +1,13 @@
 import { handleActions } from 'redux-actions';
 import { ADD_TODO, UPDATE_TODO, DELETE_TODO, INITIALISE_TODOS } from './constants';
 
+const defaultState = {
+    ids: [],
+    byId: {}
+};
+
 const todosReducer = handleActions({
-    [INITIALISE_TODOS]: (_state, action) => {
+    [INITIALISE_TODOS]: (_state = defaultState, action) => {
         const { ids, byId } = action.payload;
 
         return {
@@ -10,18 +15,21 @@ const todosReducer = handleActions({
             byId
         };
     },
-    [ADD_TODO]: (state, action) => {
+    [ADD_TODO]: (state = defaultState, action) => {
         const { id } = action.payload;
 
         return {
-            ids: state.ids.concat(id),
+            ids: [
+                ...state.ids,
+                id
+            ],
             byId: {
                 ...state.byId,
                 [id]: action.payload
             }
         };
     },
-    [UPDATE_TODO]: (state, action) => {
+    [UPDATE_TODO]: (state = defaultState, action) => {
         const { id } = action.payload;
 
         return {
@@ -35,7 +43,7 @@ const todosReducer = handleActions({
             }
         }
     },
-    [DELETE_TODO]: (state, action) => {
+    [DELETE_TODO]: (state = defaultState, action) => {
         const { [action.payload.id]: _omit, ...rest } = state.byId;
         
         return {
@@ -43,9 +51,6 @@ const todosReducer = handleActions({
             byId: rest 
         }
     }
-}, {
-    ids: [],
-    byId: {}
-});
+}, defaultState);
   
 export default todosReducer;
