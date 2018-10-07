@@ -1,5 +1,9 @@
 import { handleActions } from 'redux-actions';
-import { ADD_CATEGORY, INITIALISE_CATEGORIES } from './constants';
+import { ADD_CATEGORY, INITIALISE_CATEGORIES, DELETE_CATEGORY } from './constants';
+
+const defaultState = {
+    ids: []
+};
 
 export default handleActions({
     [INITIALISE_CATEGORIES]: (state, action) => ({
@@ -12,7 +16,8 @@ export default handleActions({
             ...state.ids,
             action.payload.name
         ]
+    }),
+    [DELETE_CATEGORY]: (state = defaultState, action) => ({
+        ids: state.ids.filter((id) => id !== action.payload.id),
     })
-}, {
-    ids: []
-});
+}, defaultState);

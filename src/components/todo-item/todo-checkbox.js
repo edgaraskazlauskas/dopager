@@ -1,12 +1,6 @@
 import React from 'react';
-import './checkbox.css';
+import Icon from 'evergreen-ui/commonjs/icon/src/Icon';
 
-const TodoCheckbox = ({ checked, onChange, children }) => (
-    <label className="container">
-        {children}
-        <input className="checkbox" type="checkbox" checked={checked} onChange={onChange} />
-        <span className="checkmark"></span>
-    </label>
-);
+const TodoCheckbox = ({ checked, onChange }) => <Icon onClick={onChange} icon={checked ? 'tick-circle' : 'circle'} color={checked ? 'success' : ''} />;
 
 export default TodoCheckbox;

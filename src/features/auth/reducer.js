@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { SET_USER_DATA, SET_PROMPT_OPEN } from './constants';
-import { combineReducers } from '../../../node_modules/redux';
+import { combineReducers } from 'redux';
 
 const userReducer = handleActions({
     [SET_USER_DATA]: (_state, action) => action.payload

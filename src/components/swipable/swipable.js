@@ -5,6 +5,7 @@ class Swipable extends React.Component {
     render() {
         return (
             <Swipe
+                style={{ flexGrow: 1 }}
                 onSwipeRight={this.props.onSwipeRight}
                 onSwipeLeft={this.props.onSwipeLeft}
             >

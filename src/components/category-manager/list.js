@@ -1,19 +1,19 @@
 import React from 'react';
 import CategoryInput from '../todo-input/category-input';
 import CategoryCard from '../category-card';
+import { Pane } from 'evergreen-ui';
 
 const CategoryList = ({ categoryNames }) => (
-    <div>
-        <div className="mbm df fxdc">
+    <Pane display="flex" flexGrow={1} flexDirection="column">
+        <Pane display="flex" margin={16} justifyContent="center">
             <CategoryInput />
-        </div>
-        <div className="df fxdr fxww phm">
+        </Pane>
+        <Pane display="flex" flexWrap="wrap" flexDirection="row" justifyContent="space-around">
             {categoryNames.map((name) => (
                 <CategoryCard key={name} categoryId={name} />
             ))}
-            <div>{process.env.REACT_APP_SECRET_CODE}</div>
-        </div>
-    </div>
+        </Pane>
+    </Pane>
 );
 
 export default CategoryList;

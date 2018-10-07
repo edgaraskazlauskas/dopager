@@ -1,8 +1,9 @@
 import React from 'react';
 import TodoItem from './../todo-item';
+import { Pane } from 'evergreen-ui';
 
 const TodoList = ({ todos = [], onClickedSetInProgress, onClickedToggle, onClickedDelete, onClickedMove }) => (
-    <div>
+    <Pane>
         {todos.map((todo) => (
             <TodoItem
                 key={todo.id}
@@ -15,7 +16,7 @@ const TodoList = ({ todos = [], onClickedSetInProgress, onClickedToggle, onClick
                 onClickedMove={() => onClickedMove(todo.id)}
             />
         ))}
-    </div>
+    </Pane>
 )
 
 export default TodoList;

@@ -1,4 +1,4 @@
-import { ADD_CATEGORY, FETCH_CATEGORIES } from "./constants";
+import { ADD_CATEGORY, FETCH_CATEGORIES, DELETE_CATEGORY } from "./constants";
 import { categoriesRef } from '../../config/firebase';
 import { isAuthenticated } from "../auth/selectors";
 import { initialiseCategories } from "./actions";
@@ -45,6 +45,13 @@ const categoriesApiMiddleware = (store) => (next) => (action) => {
                 .child(state.auth.user.uid)
                 .child(action.payload.name)
                 .set(action.payload.name);
+
+            break;
+        case DELETE_CATEGORY:
+            categoriesRef
+                .child(state.auth.user.uid)
+                .child(action.payload.name)
+                .remove();
 
             break;
         default:

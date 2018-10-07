@@ -1,10 +1,11 @@
 import { createAction } from 'redux-actions';
-import { ADD_TODO, UPDATE_TODO, DELETE_TODO, INITIALISE_TODOS, FETCH_TODOS } from './constants';
+import { ADD_TODO, UPDATE_TODO, DELETE_TODO, INITIALISE_TODOS, FETCH_TODOS, ROUTE_TODOS } from './constants';
 import uuid from 'uuid/v1';
 import addDays from 'date-fns/add_days';
 import getTime from 'date-fns/get_time';
 import { getTodoById, getTodos } from './selectors';
 import { getIsDailyView } from '../pager';
+import { push } from 'connected-react-router';
 
 // action creators
 export const fetchTodos = createAction(FETCH_TODOS);
@@ -86,3 +87,7 @@ export const toggleTogo = (id) => (dispatch, getState) => {
         completed
     }));
 };
+
+export const openTodos = () => (dispatch) => {
+    dispatch(push(ROUTE_TODOS));
+}

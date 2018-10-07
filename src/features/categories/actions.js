@@ -1,10 +1,11 @@
 import { createAction } from 'redux-actions';
-import { ADD_CATEGORY, INITIALISE_CATEGORIES, FETCH_CATEGORIES } from './constants';
+import { ADD_CATEGORY, INITIALISE_CATEGORIES, FETCH_CATEGORIES, DELETE_CATEGORY, ROUTE_CATEGORIES } from './constants';
 import { getCategoryNames } from './selectors';
 import { push } from 'connected-react-router';
 
 export const fetchCategories = createAction(FETCH_CATEGORIES);
 const createCategoryAction = createAction(ADD_CATEGORY);
+const deleteCategoryAction = createAction(DELETE_CATEGORY);
 const initialiseCategoriesAction = createAction(INITIALISE_CATEGORIES);
 
 export const initialiseCategories = (ids) => (dispatch) => {
@@ -24,14 +25,20 @@ export const createCategory = (name) => (dispatch, getState) => {
     dispatch(createCategoryAction({ name }));
 };
 
+export const deleteCategory = (name) => (dispatch) => {
+    dispatch(deleteCategoryAction({
+        name
+    }));
+};
+
 export const openCategoryList = () => (dispatch) => {
-    dispatch(push('/categories', {
+    dispatch(push(ROUTE_CATEGORIES, {
         categoryId: undefined
     }));
 };
 
 export const openCategory = (categoryId) => (dispatch) => {
-    dispatch(push(`/categories/${categoryId}`, {
+    dispatch(push(`${ROUTE_CATEGORIES}/${categoryId}`, {
         categoryId
     }));
 };

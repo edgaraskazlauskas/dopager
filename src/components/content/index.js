@@ -1,12 +1,11 @@
 import React from 'react';
 import TodoManager from './../todo-manager';
-import PagerNavigator from './../pager';
+import { Pane } from 'evergreen-ui';
 
 const Content = ({ categoryId }) => (
-    <div className="df fxg1 fxdc">
+    <Pane display="flex" flexGrow={1} flexDirection="column">
         <TodoManager categoryId={categoryId} />
-        <PagerNavigator />
-    </div>
+    </Pane>
 )
 
 export default Content;

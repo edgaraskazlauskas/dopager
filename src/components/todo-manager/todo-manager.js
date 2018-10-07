@@ -1,15 +1,16 @@
 import React from 'react';
 import Header from './../header';
 import MultipleDayManager from './multiple-day-manager-container';
+import { Pane } from 'evergreen-ui';
 
 const TodoManager = ({ categoryId }) => (
-    <div className="fxg1">
+    <Pane flexGrow={1}>
         <Header />
 
-        <div className="w100p fxg1 df fxdc">
+        <Pane flexGrow={1} display="flex" flexDirection="column">
             <MultipleDayManager categoryId={categoryId} />
-        </div>
-    </div>
+        </Pane>
+    </Pane>
 );
 
 export default TodoManager;

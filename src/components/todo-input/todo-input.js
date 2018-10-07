@@ -1,4 +1,5 @@
 import React from 'react';
+import { TextInput } from 'evergreen-ui';
 
 const KEY_CODE_ENTER = 13;
 const DEFAULT_INPUT_VALUE = '';
@@ -43,9 +44,7 @@ class TodoInput extends React.Component {
 
     render() {
         return (
-            <input
-                className="phm pvm lh16 fz16 bdw0 bdbws bdc-gray-light bdss"
-                type="text"
+            <TextInput
                 placeholder={this.props.placeholder}
                 value={this.state.value}
                 onKeyUp={this.handleKeyUp}

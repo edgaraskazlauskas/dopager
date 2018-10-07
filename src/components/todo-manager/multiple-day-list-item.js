@@ -3,9 +3,10 @@ import TodoList from './../todo-list';
 import TodoInput from './../todo-input';
 import DayHeaderContainer from '../todo-list/day-header-container';
 import { Type } from '../todo-list/day-header';
+import { Pane, Menu } from 'evergreen-ui';
 
 const MultipleDayListItem = ({ date, isDateVisible, daysFromNow, categoryId }) => (
-    <div className="df fxdc">
+    <Pane display="flex" flexDirection="column">
         {isDateVisible && (
             <DayHeaderContainer
                 type={Type.Large}
@@ -14,8 +15,11 @@ const MultipleDayListItem = ({ date, isDateVisible, daysFromNow, categoryId }) =
             />
         )}
         <TodoList date={date} categoryId={categoryId} limit={5} />
-        <TodoInput date={date} />
-    </div>
+        <Menu.Divider />
+        <Pane paddingLeft={16} paddingTop={16} paddingRight={16} paddingBottom={16}>
+            <TodoInput date={date} />
+        </Pane>
+    </Pane>
 );
 
 export default MultipleDayListItem;

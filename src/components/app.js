@@ -1,19 +1,17 @@
 import React from 'react';
 import Content from './content';
 import SingleCategoryContent from './content/single-category';
-import Sidenav from './sidenav';
+import NavigationPane from './navigation-pane';
 import CategoryManager from './category-manager';
 import { Route, Switch } from 'react-router';
 import { withRouter } from 'react-router';
 import Login from './login';
+import { Pane } from 'evergreen-ui';
 
 const App = ({ match }) => (
-    <div className="mih100p df fxdr">
-        <Sidenav />
-        <div className="fxg1">
-            <div className="bg-primary phm pvm c-white fzl tac">
-                <span>A dull pencil is better than the sharpest mind</span>
-            </div>
+    <Pane minHeight="100%" display="flex" flexDirection="column">
+        <NavigationPane />
+        <Pane display="flex" flexGrow={1}>
             <Switch>
                 <Route exact path="/" component={Content} />
                 <Route exact path="/categories" component={CategoryManager} />
@@ -21,8 +19,8 @@ const App = ({ match }) => (
                 <Route render={() => (<div>Miss</div>)} />
             </Switch>
             <Login />
-        </div>
-    </div>
+        </Pane>
+    </Pane>
 )
 
 export default withRouter(App);
