@@ -15,7 +15,7 @@
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4",
+    "react-scripts": "^2.0.5",
     "redux": "^4.0.0",
     "redux-actions": "^2.6.1",
     "redux-devtools": "^3.4.1",
@@ -29,5 +29,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
