@@ -1,8 +1,6 @@
 import React from 'react';
 import { Pane, Heading } from 'evergreen-ui';
-import TodosLink from './open-todos-container';
 import CategoriesLink from './open-categories-container';
-import ToggleTodosViewButton from './toggle-todos-view';
 
 const NavigationPane = () => (
 	<React.Fragment>
@@ -11,9 +9,7 @@ const NavigationPane = () => (
 				<Heading size={600}>DoPager</Heading>
 			</Pane>
 			<Pane display="flex" padding={8}>
-				<TodosLink />
 				<CategoriesLink />
-				<ToggleTodosViewButton />
 			</Pane>
 		</Pane>
 	</React.Fragment>

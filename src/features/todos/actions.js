@@ -42,7 +42,7 @@ export const initialiseTodos = ({ ids = [], byId = {} }) => (dispatch, getState)
 };
 
 export const toggleTodoInProgress = (id) => (dispatch, getState) => {
-    const isTodoInProgress = getTodoById(getState(), id).inProgress;
+    const isTodoInProgress = !getTodoById(getState(), id).inProgress;
 
     dispatch(updateTodoAction({
         id,
@@ -68,6 +68,7 @@ export const addTodo = (description, date) => (dispatch, getState) => {
         id,
         description,
         completed: false,
+        inProgress: false,
         categoryId: state.router.location.state.categoryId,
         createdAt: Date.now(),
         date: getTime(isExtendedView ? date : state.pager.activeDate),
@@ -83,6 +84,7 @@ export const toggleTogo = (id) => (dispatch, getState) => {
 
     dispatch(updateTodoAction({
         id,
+        inProgress: completed ? false : toggledTogo.inProgress,
         completedAt: completed ? Date.now() : null,
         completed
     }));

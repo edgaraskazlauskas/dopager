@@ -17,8 +17,14 @@ const CategoryCard = ({ title, items, onClick }) => (
                 paddingRight={8}
             >
                 <UnorderedList>
-                    {items.map(({ id, complete, description, onClick }) => (
-                        <ListItem icon={complete ? 'tick-circle' : 'circle'} key={id}>{description}</ListItem>
+                    {items.map(({ id, completed, description }) => (
+                        <ListItem
+                            key={id}
+                            icon={completed ? 'tick-circle' : 'circle'}
+                            onClick={onClick}
+                        >
+                            {description}
+                        </ListItem>
                     ))}
                 </UnorderedList>
             </Card>
