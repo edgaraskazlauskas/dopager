@@ -3,14 +3,14 @@ import CategoryInput from '../todo-input/category-input';
 import CategoryCard from '../category-card';
 import { Pane } from 'evergreen-ui';
 
-const CategoryList = ({ categoryNames }) => (
+const CategoryList = ({ categoryIds }) => (
     <Pane display="flex" flexGrow={1} flexDirection="column">
         <Pane display="flex" margin={16} justifyContent="center">
             <CategoryInput />
         </Pane>
         <Pane display="flex" flexWrap="wrap" flexDirection="row" justifyContent="space-around">
-            {categoryNames.map((name) => (
-                <CategoryCard key={name} categoryId={name} />
+            {categoryIds.map((id) => (
+                <CategoryCard key={id} categoryId={id} />
             ))}
         </Pane>
     </Pane>

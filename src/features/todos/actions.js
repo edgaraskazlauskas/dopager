@@ -9,7 +9,7 @@ import { push } from 'connected-react-router';
 
 // action creators
 export const fetchTodos = createAction(FETCH_TODOS);
-const initialiseTodosAction = createAction(INITIALISE_TODOS);
+export const initialiseTodos = createAction(INITIALISE_TODOS);
 const deleteTodoAction = createAction(DELETE_TODO);
 const addTodoAction = createAction(ADD_TODO);
 const updateTodoAction = createAction(UPDATE_TODO);
@@ -17,28 +17,6 @@ const updateTodoAction = createAction(UPDATE_TODO);
 // thunks
 export const deleteTodo = (id) => (dispatch) => {
     dispatch(deleteTodoAction({ id }));
-};
-
-export const initialiseTodos = ({ ids = [], byId = {} }) => (dispatch, getState) => {
-    const state = getState();
-    const filterIds = ids.filter((id) => state.todos.ids.indexOf(id) === -1);
-    const filteredById = filterIds.reduce((previousById, currentId) => {
-        return {
-            ...previousById,
-            [currentId]: byId[currentId]
-        }
-    }, {});
-
-    dispatch(initialiseTodosAction({
-        ids: [
-            ...state.todos.ids,
-            ...filterIds
-        ],
-        byId: {
-            ...state.todos.byId,
-            ...filteredById
-        }
-    }));
 };
 
 export const toggleTodoInProgress = (id) => (dispatch, getState) => {
@@ -92,4 +70,4 @@ export const toggleTogo = (id) => (dispatch, getState) => {
 
 export const openTodos = () => (dispatch) => {
     dispatch(push(ROUTE_TODOS));
-}
+};

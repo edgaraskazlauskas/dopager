@@ -1,64 +1,19 @@
-import { ADD_CATEGORY, FETCH_CATEGORIES, DELETE_CATEGORY } from "./constants";
+import { ADD_CATEGORY, FETCH_CATEGORIES, UPDATE_CATEGORY, DELETE_CATEGORY } from "./constants";
 import { categoriesRef } from '../../config/firebase';
-import { isAuthenticated } from "../auth/selectors";
 import { initialiseCategories } from "./actions";
+import { createFirebaseResourceMiddleware } from "../firebase/firebaseResourceMiddleware";
 
-const categoriesApiMiddleware = (store) => (next) => (action) => {
-    const state = store.getState();
+const categoriesApiMiddleware = createFirebaseResourceMiddleware({
+    fetchAction: FETCH_CATEGORIES,
+    addAction: ADD_CATEGORY,
+    updateAction: UPDATE_CATEGORY,
+    deleteAction: DELETE_CATEGORY,
 
-    if (!isAuthenticated(state)) {
-        return next(action);
-    }
+    initialiseActionCreator: initialiseCategories,
+    resourceIdsSelector: (state) => state.categories.ids,
+    resourcesByIdSelector: (state) => state.categories.byId,
 
-    switch(action.type) {
-        case FETCH_CATEGORIES:
-            categoriesRef.child(state.auth.user.uid).on("value", (snapshot) => {
-                const storedCategories = snapshot.val();
-        
-                if (!storedCategories) {
-                    return;
-                }
-        
-                const { ids } = Object.keys(storedCategories)
-                    .reduce((prev, curr) => ({
-                        ids: [
-                            ...prev.ids,
-                            curr
-                        ],
-                    }), { ids: [] });
-        
-                const localItemsToSave = state.categories.ids.filter((id) => ids.indexOf(id) === -1);
-
-                localItemsToSave.forEach((item) => {
-                    categoriesRef
-                        .child(state.auth.user.uid)
-                        .child(item)
-                        .set(item);
-                });
-
-                store.dispatch(initialiseCategories([ ...localItemsToSave, ...ids ]));
-            });
-
-            break;
-        case ADD_CATEGORY:
-            categoriesRef
-                .child(state.auth.user.uid)
-                .child(action.payload.name)
-                .set(action.payload.name);
-
-            break;
-        case DELETE_CATEGORY:
-            categoriesRef
-                .child(state.auth.user.uid)
-                .child(action.payload.name)
-                .remove();
-
-            break;
-        default:
-            break;
-    }
-
-    return next(action);
-}
+    firebaseResoureRef: categoriesRef
+});
   
 export default categoriesApiMiddleware;
