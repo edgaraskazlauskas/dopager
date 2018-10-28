@@ -1,7 +1,5 @@
 import React from 'react';
 import { Button, Heading, Card, Pane, Menu, Popover, Position } from 'evergreen-ui';
-import { UnorderedList, ListItem } from 'evergreen-ui/commonjs/typography';
-import TodoItem from '../todo-item';
 import TodoList from '../todo-list/todo-list';
 
 const CategoryCard = ({ title, items, onClick, onClickedDelete }) => (

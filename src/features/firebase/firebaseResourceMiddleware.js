@@ -27,7 +27,7 @@ export const createFirebaseResourceMiddleware = ({
                     return;
                 }
         
-                const { ids, byId } = Object.keys(storedResources)
+                const { ids: firebaseResourceIds, byId: firebaseResourcesById } = Object.keys(storedResources)
                     .reduce((prev, curr) => ({
                         ids: [
                             ...prev.ids,
@@ -39,22 +39,24 @@ export const createFirebaseResourceMiddleware = ({
                         }
                     }), { ids: [], byId: {} });
 
-                // filter resources that have already been stored locally
-                const filteredFirebaseIds = ids.filter((id) => state.todos.ids.indexOf(id) === -1);
-                const filteredFirebaseById = filteredFirebaseIds.reduce((previousById, currentId) => ({
-                    ...previousById,
-                    [currentId]: byId[currentId]
-                }), {});
-
                 const resourceIds = resourceIdsSelector(state);
                 const resourcesById = resourcesByIdSelector(state);
-                // get recently created resources
-                const newResourceIds = resourceIds.filter((id) => ids.indexOf(id) === -1);
+
+                // get firebase resources that have not been stored locally
+                const filteredFirebaseIds = firebaseResourceIds.filter((id) => resourceIds.indexOf(id) === -1);
+                const filteredFirebaseById = filteredFirebaseIds.reduce((previousById, currentId) => ({
+                    ...previousById,
+                    [currentId]: firebaseResourcesById[currentId]
+                }), {});
+
+                // get recently created resources (that are not stored in firebase)
+                const newResourceIds = resourceIds.filter((id) => filteredFirebaseIds.indexOf(id) === -1);
                 const newResourcesById = newResourceIds.reduce((previousById, currentId) => ({
                     ...previousById,
                     [currentId]: resourcesById[currentId]
                 }), {});
 
+                // store new resources
                 newResourceIds.forEach((item) => {
                     firebaseResoureRef
                         .child(state.auth.user.uid)
@@ -62,6 +64,7 @@ export const createFirebaseResourceMiddleware = ({
                         .set(newResourcesById[item]);
                 });
 
+                // stored todos, local new todos, local updated todos
                 const allIds = [ ...resourceIdsSelector(state), ...filteredFirebaseIds ];
                 const allById = { ...resourcesByIdSelector(state), ...filteredFirebaseById };
 

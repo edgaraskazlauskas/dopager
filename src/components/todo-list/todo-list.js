@@ -5,7 +5,7 @@ import { Pane } from 'evergreen-ui';
 const TodoList = ({ todos = [] }) => (
     <Pane>
         {todos.map((todoId) => (
-            <TodoItem id={todoId} />
+            <TodoItem key={todoId} id={todoId} />
         ))}
     </Pane>
 )

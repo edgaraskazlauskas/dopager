@@ -40,6 +40,6 @@ const TodoItem = ({ id, type = TodoItemType.Compact, value, completed, isInProgr
         <TodoItemActionButtons id={id} />
         <TodoItemActionsPopover id={id} />
     </Pane>
-)
+);
 
 export default TodoItem;
