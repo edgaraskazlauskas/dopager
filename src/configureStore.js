@@ -8,6 +8,7 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 import rootReducer, { initialiseApp } from './features';
 import todosApiMiddleware from './features/todos/middleware';
 import categoriesApiMiddleware from './features/categories/middleware';
+import syncBreakpointWithStore from 'redux-breakpoint'
 
 const persistedReducer = persistReducer({ key: 'root', storage }, rootReducer);
 const composeEnhancers = composeWithDevTools({
@@ -27,6 +28,8 @@ export const store = createStore(
         )
     )
 );
+
+syncBreakpointWithStore(store);
 
 export const persistor = persistStore(store, {}, () => {
     store.dispatch(initialiseApp());

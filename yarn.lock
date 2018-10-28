@@ -7399,6 +7399,10 @@ redux-actions@^2.6.1:
     lodash.curry "^4.1.1"
     reduce-reducers "^0.1.0"
 
+redux-breakpoint@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/redux-breakpoint/-/redux-breakpoint-3.0.6.tgz#ec23e865efad8c4d08309523d2d85d8c7d00f17a"
+
 redux-devtools-extension@^2.13.2:
   version "2.13.2"
   resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.2.tgz#e0f9a8e8dfca7c17be92c7124958a3b94eb2911d"

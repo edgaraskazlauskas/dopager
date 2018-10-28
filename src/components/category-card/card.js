@@ -1,8 +1,10 @@
 import React from 'react';
 import { Button, Heading, Card, Pane, Menu, Popover, Position } from 'evergreen-ui';
 import { UnorderedList, ListItem } from 'evergreen-ui/commonjs/typography';
+import TodoItem from '../todo-item';
+import TodoList from '../todo-list/todo-list';
 
-const CategoryCard = ({ title, items, onClick, onClickedRename, onClickedDelete }) => (
+const CategoryCard = ({ title, items, onClick, onClickedDelete }) => (
     <Pane display="flex" flexDirection="column" elevation={1} flexGrow={1} margin={16}>
         <Pane flexShrink={0}>
             <Pane padding={16} display="flex" flexDirection="row" justifyContent="space-between" alignItems="center">
@@ -32,17 +34,7 @@ const CategoryCard = ({ title, items, onClick, onClickedRename, onClickedDelete 
                 paddingLeft={8}
                 paddingRight={8}
             >
-                <UnorderedList>
-                    {items.map(({ id, completed, description }) => (
-                        <ListItem
-                            key={id}
-                            icon={completed ? 'tick-circle' : 'circle'}
-                            onClick={onClick}
-                        >
-                            {description}
-                        </ListItem>
-                    ))}
-                </UnorderedList>
+                <TodoList todos={items} />
                 <Button onClick={onClick} appearance="minimal" justifyContent="center">More...</Button>
             </Card>
         </Pane>

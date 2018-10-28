@@ -3,7 +3,7 @@ import { ADD_TODO, UPDATE_TODO, DELETE_TODO, INITIALISE_TODOS, FETCH_TODOS, ROUT
 import uuid from 'uuid/v1';
 import addDays from 'date-fns/add_days';
 import getTime from 'date-fns/get_time';
-import { getTodoById, getTodos } from './selectors';
+import { getTodoById } from './selectors';
 import { getIsDailyView } from '../pager';
 import { push } from 'connected-react-router';
 
@@ -20,11 +20,11 @@ export const deleteTodo = (id) => (dispatch) => {
 };
 
 export const toggleTodoInProgress = (id) => (dispatch, getState) => {
-    const isTodoInProgress = !getTodoById(getState(), id).inProgress;
+    const { inProgress } = getTodoById(getState(), id);
 
     dispatch(updateTodoAction({
         id,
-        inProgress: isTodoInProgress
+        inProgress: !inProgress
     }));
 };
 
@@ -57,14 +57,13 @@ export const addTodo = (description, date) => (dispatch, getState) => {
 };
 
 export const toggleTogo = (id) => (dispatch, getState) => {
-    const toggledTogo = getTodos(getState()).find((todo) => todo.id === id);
-    const completed = !toggledTogo.completed;
+    const { completed, inProgress } = getTodoById(getState(), id);
 
     dispatch(updateTodoAction({
         id,
-        inProgress: completed ? false : toggledTogo.inProgress,
-        completedAt: completed ? Date.now() : null,
-        completed
+        inProgress: !completed ? false : inProgress,
+        completedAt: !completed ? Date.now() : null,
+        completed: !completed
     }));
 };
 

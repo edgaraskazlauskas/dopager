@@ -7,6 +7,7 @@ import { push } from 'connected-react-router';
 import { fetchTodos } from './todos/actions';
 import { initialiseAuthentication } from './auth/actions';
 import { fetchCategories } from './categories/actions';
+import { breakpointReducer } from 'redux-breakpoint';
 
 export const initialiseApp = () => (dispatch) => {
     dispatch(push(window.location.pathname, {
@@ -22,5 +23,6 @@ export default combineReducers({
     auth,
     todos,
     pager,
-    categories
+    categories,
+    breakpoint: breakpointReducer
 });
