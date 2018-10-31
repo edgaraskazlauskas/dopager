@@ -22,7 +22,7 @@ const StyleByTypeMap = {
     }
 };
 
-const TodoItem = ({ id, type = TodoItemType.Compact, value, completed, isInProgress, onClickedToggle }) => (
+const TodoItem = ({ id, type = TodoItemType.Compact, value, completed, isInProgress, onClick, onClickedToggle }) => (
     <Pane
         paddingLeft={StyleByTypeMap[type].wrapperPaddingHorizontal}
         paddingRight={StyleByTypeMap[type].wrapperPaddingHorizontal}
@@ -35,7 +35,7 @@ const TodoItem = ({ id, type = TodoItemType.Compact, value, completed, isInProgr
     >
         <Pane display="flex" alignItems="center">
             <TodoCheckbox checked={completed} onChange={onClickedToggle} />
-            <CrossedText isCrossed={completed} marginLeft={12}>{value}</CrossedText>
+            <CrossedText onClick={onClick} isCrossed={completed} marginLeft={12}>{value}</CrossedText>
         </Pane>
         <TodoItemActionButtons id={id} />
         <TodoItemActionsPopover id={id} />

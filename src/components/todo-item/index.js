@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
-import { toggleTogo, deleteTodo, moveTodo, toggleTodoInProgress } from '../../features/todos/actions';
+import { toggleTogo } from '../../features/todos/actions';
 import { getTodoById } from '../../features/todos/selectors';
 import TodoItem from './todo-item';
+import { openTodoNotes } from '../../features/notes/actions';
 
 export default connect(
     (state, { id }) => {
@@ -15,9 +16,7 @@ export default connect(
         };
     },
     (dispatch, { id }) => ({
-        onClickedToggle: () => dispatch(toggleTogo(id)),
-        onClickedDelete: () => dispatch(deleteTodo(id)),
-        onClickedMove: () => dispatch(moveTodo(id)),
-        onClickedSetInProgress: () => dispatch(toggleTodoInProgress(id))
+        onClick: () => dispatch(openTodoNotes(id)),
+        onClickedToggle: () => dispatch(toggleTogo(id))
     })
 )(TodoItem);

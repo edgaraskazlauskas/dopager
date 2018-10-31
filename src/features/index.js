@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import todos from './todos/reducer';
 import categories from './categories/reducer';
+import notes from './notes/reducer';
 import pager from './pager';
 import auth from './auth/reducer';
 import { push } from 'connected-react-router';
@@ -23,6 +24,7 @@ export default combineReducers({
     auth,
     todos,
     pager,
+    notes,
     categories,
     breakpoint: breakpointReducer
 });
