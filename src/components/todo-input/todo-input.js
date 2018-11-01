@@ -30,12 +30,6 @@ class TodoInput extends React.Component {
     } 
 
     setInputValue(value) {
-        if (this.props.onChange) {
-            // controlled input
-            this.props.onChange(value);
-            return;
-        }
-    
         this.setState({ value });
     }
 
@@ -52,7 +46,7 @@ class TodoInput extends React.Component {
         return (
             <TextInput
                 placeholder={this.props.placeholder}
-                value={this.props.value || this.state.value}
+                value={this.state.value}
                 onKeyUp={this.handleKeyUp}
                 onChange={this.handleInputChanged}
             />
