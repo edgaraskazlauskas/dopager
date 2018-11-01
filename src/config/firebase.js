@@ -17,6 +17,7 @@ firebase.initializeApp(firebaseConfig);
 
 const databaseRef = firebase.database().ref();
 export const todosRef = databaseRef.child("todos");
+export const notesRef = databaseRef.child("notes");
 export const categoriesRef = databaseRef.child("categories");
 export const authRef = firebase.auth();
 export const provider = new firebase.auth.GoogleAuthProvider();

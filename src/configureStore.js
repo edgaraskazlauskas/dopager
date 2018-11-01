@@ -7,6 +7,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web and AsyncStorage for react-native
 import rootReducer, { initialiseApp } from './features';
 import todosApiMiddleware from './features/todos/middleware';
+import notesApiMiddleware from './features/notes/middleware';
 import categoriesApiMiddleware from './features/categories/middleware';
 import syncBreakpointWithStore from 'redux-breakpoint'
 
@@ -23,6 +24,7 @@ export const store = createStore(
         applyMiddleware(
             routerMiddleware(history), // for dispatching history actions
             thunk,
+            notesApiMiddleware,
             todosApiMiddleware,
             categoriesApiMiddleware
         )
