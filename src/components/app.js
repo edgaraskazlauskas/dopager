@@ -7,6 +7,7 @@ import { Route, Switch } from 'react-router';
 import { withRouter } from 'react-router';
 import Login from './login';
 import { Pane } from 'evergreen-ui';
+import Sidebar from './sidebar/container';
 
 const App = ({ match }) => (
     <Pane minHeight="100%" display="flex" flexDirection="column">
@@ -19,6 +20,7 @@ const App = ({ match }) => (
                 <Route render={() => (<div>Miss</div>)} />
             </Switch>
             <Login />
+            <Sidebar />
         </Pane>
     </Pane>
 )

@@ -39,3 +39,5 @@ export const getDateTodos = (state, date, categoryId) => {
 };
 
 export const isTodosPageOpen = (state) => state.router.location.pathname === ROUTE_TODOS;
+
+export const getActiveTodoId = (state) => state.router.location.state ? state.router.location.state.todoId : null;
