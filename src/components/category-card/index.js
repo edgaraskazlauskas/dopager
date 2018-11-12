@@ -4,9 +4,10 @@ import { openCategory, deleteCategory } from './../../features/categories/action
 import CategoryCard from './card';
 
 export default connect(
-    (state, { categoryId }) => ({
-        title: getCategoryName(state, { id: categoryId }),
-        items: getCategoryItems(state, { id: categoryId, limit: 5 })
+    (state, { categoryId, todosType }) => ({
+        categoryId,
+        todosType,
+        title: getCategoryName(state, { id: categoryId })
     }),
     (dispatch, { categoryId }) => ({
         onClick: () => dispatch(openCategory(categoryId)),

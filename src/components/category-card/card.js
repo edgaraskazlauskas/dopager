@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Heading, Card, Pane, Menu, Popover, Position } from 'evergreen-ui';
-import TodoList from '../todo-list/todo-list';
+import TodoList from '../todo-list';
 
-const CategoryCard = ({ title, items, onClick, onClickedDelete }) => (
+const CategoryCard = ({ categoryId, title, onClick, onClickedDelete, todosType }) => (
     <Pane display="flex" flexDirection="column" elevation={1} flexGrow={1} margin={16}>
         <Pane flexShrink={0}>
             <Pane padding={16} display="flex" flexDirection="row" justifyContent="space-between" alignItems="center">
@@ -32,7 +32,7 @@ const CategoryCard = ({ title, items, onClick, onClickedDelete }) => (
                 paddingLeft={8}
                 paddingRight={8}
             >
-                <TodoList todos={items} />
+                <TodoList categoryId={categoryId} todosType={todosType} />
                 <Button onClick={onClick} appearance="minimal" justifyContent="center">More...</Button>
             </Card>
         </Pane>

@@ -5,7 +5,8 @@ import format from 'date-fns/format'
 
 const TodoManagerType = {
     WEEKLY: 0,
-    DAILY: 1
+    DAILY: 1,
+    ALL: 2
 };
 
 export const getSelectedDate = (state) => state.pager.activeDate;
@@ -56,7 +57,7 @@ export const goToNext = () => (dispatch, getState) => {
 };
 
 const pagerReducer = (
-    state = { activeDate: Date.now(), pagerType: TodoManagerType.DAILY, daysFromNow: 0 },
+    state = { activeDate: Date.now(), pagerType: TodoManagerType.ALL, daysFromNow: 0 },
     action
 ) => {
     switch (action.type) {

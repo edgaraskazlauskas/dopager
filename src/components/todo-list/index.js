@@ -4,8 +4,8 @@ import { getDateTodos } from '../../features/todos/selectors';
 import TodoList from './todo-list';
 
 export default connect(
-    (state, { date, categoryId }) => ({
-        todos: getDateTodos(state, date, categoryId)
+    (state, { date, categoryId, limit, todosType }) => ({
+        todos: getDateTodos(state, date, categoryId, todosType, limit)
     }),
     {
         onClickedToggle: toggleTogo,

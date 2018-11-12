@@ -11,7 +11,7 @@ const notesApiMiddleware = createFirebaseResourceMiddleware({
 
     initialiseActionCreator: initialiseNotes,
     resourceIdsSelector: getNoteIds,
-    resourcesByIdSelector: (state) => state.notes.notes.byId,
+    resourcesByIdSelector: (state) => state.notes.byId,
 
     firebaseResoureRef: notesRef
 });
